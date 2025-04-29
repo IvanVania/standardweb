@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standard Delivery</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;600&family=Roboto:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cinzel', serif;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        section {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        #section1 {
+            background-image: url('./images/image11.png'); 
+        }
+        
+        #section2 {
+            /* Заменено изображение на красивый градиентный фон */
+            background: linear-gradient(135deg, #152b5e 0%, #1e3c72 50%, #2a5298 100%);
+            background-attachment: fixed;
+            position: relative;
+            padding: 80px 0;
+            overflow: hidden;
+        }
+        
+        /* Добавляем эффект частиц на фоне для section2 */
+        #section2::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                              radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.4;
+            z-index: 1;
+        }
+        
+        .logo {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .menu {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            font-size: 24px;
+        }
+        
+        .text-content {
+            padding-left: 90px;
+            max-width: 800px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            margin-top: 30px;
+        }
+        
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 60px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .main-text {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.5;
+            max-width: 800px;
+            color: white;
+        }
+        
+        .start-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background-color: white;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .start-button:hover {
+            background-color: #eaeaea;
+        }
+        
+        .arrow-icon {
+            display: inline-block;
+            margin-left: 8px;
+            font-size: 20px;
+        }
+        
+        /* New Manifest Section Styling */
+        .manifest-content {
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            position: relative;
+            z-index: 2; /* Размещаем контент поверх фонового эффекта */
+        }
+        
+        .manifest-heading {
+            font-family: 'Cinzel', serif;
+            font-size: 50px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .manifest-section {
+            margin-bottom: 50px;
+        }
+        
+        .manifest-section-title {
+            font-family: 'Roboto', Arial, sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: white;
+        }
+        
+        .manifest-paragraph {
+            font-family: 'Roboto', Arial, sans-serif;
+            font-size: 20px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .manifest-emphasis {
+            font-weight: 700;
+        }
+        
+        .section-separator {
+            width: 50%;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.5);
+            margin: 40px auto;
+        }
+        
+        /* Footer styling */
+        .footer {
+            padding: 30px 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            text-align: center;
+            font-size: 16px;
+            margin-top: 50px;
+        }
+        
+        .copyright {
+            margin-bottom: 15px;
+        }
+        
+        .backed-by {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        /* Password overlay */
+        .password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #000428 0%, #004e92 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .password-container {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .password-logo {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .password-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .password-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .password-button {
+            padding: 12px 25px;
+            background-color: white;
+            color: #004e92;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .password-button:hover {
+            background-color: #eaeaea;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Password Overlay -->
+    <div class="password-overlay" id="passwordOverlay">
+        <div class="password-container">
+            <div class="password-logo">SD</div>
+            <h2 class="password-title">Enter Access Code</h2>
+            <input type="password" class="password-input" id="passwordInput" placeholder="Access Code">
+            <button class="password-button" id="passwordButton">Access</button>
+        </div>
+    </div>
+
+    <section id="section1">
+        <div class="logo">SD</div>
+        <div class="menu">≡</div>
+        <div class="text-content">
+            <h1 class="title">STANDARD DELIVERY</h1>
+            <h2 class="subtitle">REVOLUTIONIZING HOME DELIVERIES</h2>
+            <p class="main-text">A global underground tunnel network that connects every home and every store for fully automated deliveries — just like plumbing revolutionized modern homes</p>
+            <a href="#section2" class="start-button">Manifest <span class="arrow-icon">↓</span></a>
+        </div>
+    </section>
+    
+    <section id="section2">
+        <div class="manifest-content">
+            <h1 class="manifest-heading">MANIFEST</h1>
+            
+            <div class="manifest-section">
+                <p class="manifest-paragraph">Standard Delivery creates an underground global network of standard-sized tunnels to connect every home and every store. This system enables full automation and standardization of deliveries, capable of replacing more than half of all human-performed deliveries. It establishes a new standard for homes, much like how water and sewage systems transformed modern living.</p>
+                
+                <h2 class="manifest-section-title">Building the Modern Roman Road for Future Smart Cities</h2>
+                <p class="manifest-paragraph">This is the foundation of the civilization of the future and smart cities.</p>
+            </div>
+            
+            <div class="section-separator"></div>
+            
+            <div class="manifest-section">
+                <h2 class="manifest-section-title">Why is this the final form of delivery, and why can no other method endure in the long term?</h2>
+                
+                <p class="manifest-paragraph">Robots and drones will <span class="manifest-emphasis">never</span> be able to handle 60% of all deliveries.</p>
+                <p class="manifest-paragraph">Drones and autonomous robots will <span class="manifest-emphasis">never</span> be faster than Standard, and speed is the key desire that must be satisfied first. You always want to receive your package as quickly as possible — similar to how a website that loads 0.3 seconds faster attracts more traffic than a slower one. This is exactly how Google outperformed everyone else.</p>
+                <p class="manifest-paragraph">They will also <span class="manifest-emphasis">never</span> be more reliable than Standard. Pandemics, traffic, bad weather, and disasters all disrupt global trade and delivery. This affects both drones and autonomous robots.</p>
+                
+                <p class="manifest-paragraph"><span class="manifest-emphasis">Underground tunnel delivery surpasses all other methods.</span></p>
+            </div>
+            
+            <div class="section-separator"></div>
+            
+            <div class="manifest-section">
+                <h2 class="manifest-section-title">Our company's advantage lies in the unique tunnel construction technology:</h2>
+                
+                <h2 class="manifest-section-title">Standard Size — Why is it important?</h2>
+                <p class="manifest-paragraph">Standardized containers. Sea shipping existed long before container ships, but it was Malcolm McLean who revolutionized global trade by creating a standardized container size. This dramatically accelerated trade and boosted global GDP. Standardization made trade fast and reliable.</p>
+                <p class="manifest-paragraph">A similar example is railroads. Their rapid spread began with the adoption of a standard track gauge. Everyone knows how railroads transformed America and the world.</p>
+                <p class="manifest-paragraph">John D. Rockefeller started building pipelines to transport oil directly to refineries, making Standard Oil the largest company of its time and forever changing the U.S. economy.</p>
+                
+                <h2 class="manifest-section-title">Autonomous Tunnel Construction with Simultaneous Shell Formation</h2>
+                <p class="manifest-paragraph">A 3D printer creates the tunnel shell during drilling, eliminating the need for separate pipe production lines and reducing transport volumes.</p>
+                <p class="manifest-paragraph">All necessary components are manufactured on-site, completely removing the need for human involvement. Standard tunnels can be built 24/7 without interruption.</p>
+                
+                <h2 class="manifest-section-title">Economies of Scale</h2>
+                <p class="manifest-paragraph">Once the core tunnel network is completed, delivery costs approach zero. A system built once can operate for decades without human intervention. This makes Standard Delivery the most cost-effective logistics solution in history.</p>
+                
+                <h2 class="manifest-section-title">Ecology and Energy Consumption</h2>
+                <p class="manifest-paragraph">Standard Delivery consumes dozens of times less energy than drones, cars, and traditional couriers. Minimal emissions and no traffic congestion make it the ideal solution from an environmental standpoint. It provides a real contribution to fighting the climate crisis in logistics.</p>
+                
+                <h2 class="manifest-section-title">Integration with Smart Homes and Factories</h2>
+                <p class="manifest-paragraph">Standard becomes an integral part of the smart home. A robot accepts the package, sorts it, and automatically delivers it to the right location — the fridge, pantry, or a room.</p>
+                <p class="manifest-paragraph">Smart factories connect directly to the system: production and delivery merge into a single automated flow. No time loss, no manual handling — only a continuous supply cycle.</p>
+            </div>
+            
+            <div class="section-separator"></div>
+            
+            <div class="manifest-section">
+                <p class="manifest-paragraph">Today, such an idea may seem impossible. But once, the thought of a home without running water or sewage also seemed impossible. These systems became standard because they solved daily and essential needs — like access to water. Today, deliveries have become a similar need: people want to receive packages daily — and as fast as possible.</p>
+                
+                <p class="manifest-paragraph">America is on the brink of a new manufacturing revolution, and Standard Delivery will be its foundation. It will be the fastest way to deliver products — from factory to factory, factory to home, home to home, and store to home.</p>
+                <p class="manifest-paragraph">This system will create a new economy: smart factories that automatically receive materials and produce goods.</p>
+                <p class="manifest-paragraph"><span class="manifest-emphasis">Standard Delivery is the railroad of the future — connecting and integrating all other delivery methods and becoming the backbone of a global logistics revolution.</span></p>
+            </div>
+            
+            <div class="footer">
+                <p class="backed-by">Backed by Courage</p>
+                <p class="copyright">© 2025 All rights reserved. Standard Inc.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Password functionality
+        document.addEventListener("DOMContentLoaded", function() {
+            const overlay = document.getElementById("passwordOverlay");
+            const button = document.getElementById("passwordButton");
+            const input = document.getElementById("passwordInput");
+            const correctPassword = "standard01";
+            
+            // Check if password was already entered
+            if (sessionStorage.getItem("passwordEntered") === "true") {
+                overlay.classList.add("hidden");
+            }
+            
+            // Check password on button click
+            button.addEventListener("click", checkPassword);
+            
+            // Check password on Enter key
+            input.addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {
+                    checkPassword();
+                }
+            });
+            
+            function checkPassword() {
+                if (input.value === correctPassword) {
+                    overlay.classList.add("hidden");
+                    sessionStorage.setItem("passwordEntered", "true");
+                } else {
+                    input.value = "";
+                    input.placeholder = "Incorrect password. Try again.";
+                    input.style.borderColor = "rgba(255, 0, 0, 0.7)";
+                    setTimeout(() => {
+                        input.placeholder = "Access Code";
+                        input.style.borderColor = "rgba(255, 255, 255, 0.3)";
+                    }, 2000);
+                }
+            }
+        });
+        
+        // Smooth scroll functionality
+        document.querySelector('a[href="#section2"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#section2').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
